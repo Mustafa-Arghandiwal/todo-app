@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="src/output.css" rel="stylesheet">
+    <title>Todo list</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
+</head>
+
+<body class="bg-customWwhite dark:bg-customBlack">
+    <section id="main-section" class="relative font-kanit flex flex-col items-center  align-middle gap-4  h-screen pt-20">
+
+        <h1 class="text-2xl text-customBlack dark:text-customWwhite ">TODO LIST</h1>
+        <div class="min-w-full flex justify-center gap-4 px-3 flex-wrap">
+
+            <form id="search-form"
+                class=" flex justify-between lg:w-2/5 md:w-3/5 sm:w-1/2  border border-customPurple focus-within:ring-1 focus-within:ring-customPurple 
+                        focus-within:shadow-sm rounded-md dark:border-customWwhite dark:focus-within:ring-customWwhite">
+                <input id="search-input" type="search" placeholder="Search note..."
+                    class=" text-customPurple dark:text-customWwhite text-base font-medium outline-none appearance-none [&::-webkit-search-cancel-button]:hidden px-4 py-2 w-full 
+            rounded-l-md  placeholder-phColorLht dark:placeholder-phColorDrk tracking-widest placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-md placeholder:font-light
+            bg-transparent peer" />
+                <button id="search-btn" class=" flex items-center justify-center px-4 py-2 max-w-14 border-l border-customPurple dark:border-customWwhite
+                cursor-pointer peer-focus:border-l-2 group">
+                    <svg class="text-customPurple dark:text-customWwhite group-hover:scale-110 transition-all duration-150"
+                        width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.7773 20.184L15.9056 15.312H15.8531C17.3547 13.5415 18.1136 11.2588 17.9709 8.94156C17.8282 6.62433 16.7951 4.45202 15.0876 2.87905C13.3801 1.30608 11.1306 0.454303 8.80958 0.501892C6.48855 0.549481 4.27583 1.49275 2.63427 3.13439C0.992706 4.77602 0.0494786 6.98885 0.00189181 9.30999C-0.045695 11.6311 0.806045 13.8808 2.37894 15.5883C3.95184 17.2958 6.12404 18.329 8.44117 18.4717C10.7583 18.6144 13.0408 17.8555 14.8113 16.3539C14.8113 16.3539 14.8113 16.3914 14.8113 16.4063L19.6831 21.2783C19.7527 21.3485 19.8356 21.4043 19.927 21.4424C20.0183 21.4804 20.1163 21.5 20.2152 21.5C20.3141 21.5 20.4121 21.4804 20.5034 21.4424C20.5948 21.4043 20.6777 21.3485 20.7473 21.2783C20.8242 21.2103 20.8862 21.1272 20.9296 21.0342C20.9731 20.9412 20.9969 20.8402 20.9997 20.7376C21.0025 20.635 20.9842 20.533 20.946 20.4377C20.9077 20.3425 20.8503 20.2561 20.7773 20.184ZM9.00276 16.9685C7.5204 16.9685 6.07133 16.5289 4.83879 15.7053C3.60625 14.8817 2.64561 13.7111 2.07833 12.3415C1.51106 10.9719 1.36263 9.46488 1.65183 8.01094C1.94102 6.55699 2.65485 5.22146 3.70303 4.17322C4.75122 3.12499 6.08669 2.41113 7.54057 2.12192C8.99445 1.83272 10.5014 1.98115 11.871 2.54845C13.2405 3.11575 14.411 4.07644 15.2346 5.30904C16.0581 6.54163 16.4977 7.99077 16.4977 9.4732C16.4977 10.4575 16.3038 11.4322 15.9272 12.3415C15.5505 13.2509 14.9985 14.0772 14.3025 14.7732C13.6065 15.4692 12.7803 16.0213 11.871 16.3979C10.9616 16.7746 9.98701 16.9685 9.00276 16.9685Z" fill="currentColor" />
+                    </svg>
+
+                </button>
+
+            </form>
+
+        <div class="flex justify-center gap-4 px-3">
+
+            <div class="relative">
+                <button id="dropdown-btn" class="bg-customPurple flex justify-between px-2 items-center gap-2
+                 w-32 h-full rounded-md text-customWwhite font-medium text-base tracking-wider 
+                 relative hover:bg-customPurple2 transition-all">
+                    <span id="dropdown-btn-text">ALL</span>
+                    <div id="chevron" class="transform transition-all duration-150 ease-in-out ">
+                        <svg class=" w-3 h-3 p-0" width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 4L1 1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M7 1L4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </button>
+                <div id="dropdown" class=" border border-customPurple text-customPurple flex flex-col justify-around  rounded-md h-24 w-full
+                absolute  text-sm opacity-0 scale-95 transition-all ease-in-out bg-customWwhite pointer-events-none">
+                    <div id="opt-all" class="w-full h-1/3 flex items-center rounded-t-md rounded-tl-md cursor-pointer hover:bg-customPurple3 transition-all">
+                        <span class="ml-1">ALL</span>
+                    </div>
+                    <div id="opt-completed" class="w-full h-1/3 flex items-center cursor-pointer hover:bg-customPurple3 transition-all">
+                        <span class="ml-1">COMPLETED</span>
+                    </div>
+                    <div id="opt-pending" class="w-full h-1/3 flex items-center rounded-b-md rounded-bl-md cursor-pointer hover:bg-customPurple3 transition-all">
+                        <span class="ml-1">PENDING</span>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <button id="theme-toggle" class="
+                w-10 h-10  bg-customPurple hover:bg-customPurple2 transition-all rounded-md grid place-items-center text-customWwhite">
+                <img id="moon-svg" class="w-5 h-5 hidden" src="src/moon.svg" />
+                <img id="sun-svg" class="w-5 h-5 hidden" src="src/sun.svg" />
+
+            </button>
+
+        </div>
+            
+
+        </div>
+
+
+
+
+    <div class="notes-container w-4/12  flex flex-col items-center align-middle gap-4 mt-10 pb-24 ">
+        
+        </div>
+        
+
+
+
+
+
+
+        <button class="undo-btn font-light tracking-wider rounded-md flex items-center justify-center gap-2 px-3 py-2 text-customWwhite 
+                                 bg-customPurple2 hover:bg-customPurple hover:ring-1 hover:ring-customPurple2 
+                                 absolute  -top-16  transition-all duration-300 w-28">
+            <div class="countdown-number w-2"></div>
+            <span>UNDO</span>
+            <svg class="t" width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 5.4394V11.4318C14.9993 12.1127 14.7236 12.7656 14.2333 13.247C13.743 13.7285 13.0782 13.9993 12.3848 14H7.15436V13.1439H12.3848C12.847 13.1433 13.29 12.9627 13.6168 12.6417C13.9437 12.3208 14.1276 11.8857 14.1283 11.4318V5.4394C14.1276 4.98553 13.9437 4.55044 13.6168 4.2295C13.29 3.90857 12.847 3.72796 12.3848 3.72728H1.66851L3.97513 5.99242L3.35881 6.59765L0 3.29925L3.35881 0L3.97513 0.605234L1.66851 2.87122H12.3848C13.0782 2.8719 13.743 3.1427 14.2333 3.62418C14.7236 4.10566 14.9993 4.75849 15 5.4394Z" fill="currentColor" />
+            </svg>
+        </button>
+
+
+
+        
+
+
+    </section>
+
+    <button id="add-todo" class="fixed group bottom-2 md:bottom-16 lg:bottom-16 right-5 md:right-10 lg:right-16 bg-customPurple hover:bg-customPurple2 
+    transition-all w-12 h-12 rounded-full grid place-items-center">
+    <img src="src/plus.svg" />
+
+    <div class="absolute -top-7 w-20  text-customWwhite px-1 py-2 rounded-md pointer-events-none
+    text-sm font-medium transition-all duration-300  invisible opacity-0 bg-gray-600
+    group-hover:opacity-100 group-hover:visible group-hover:-top-11
+    before:content-[''] before:absolute before:h-3 before:w-3 before:-bottom-1 before:left-1/2 
+    before:transform before:-translate-x-1/2 before:rotate-45 before:bg-gray-600
+    ">Add a note</div>
+    </button>
+
+
+    <button id="delete-all" class="fixed  group bottom-2 md:bottom-16 lg:bottom-16 right-20 md:right-24 lg:right-32 bg-customPurple hover:bg-customRed 
+    transition-all w-12 h-12 rounded-full grid place-items-center
+    disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed
+    ">
+    
+    <svg class="trash-svg w-7 h-7 text-customWwhite dark:group-disabled:text-gray-500
+    duration-75" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+       <path d="M3.87426 7.61505C3.80724 6.74386 4.49607 6 5.36983 6H12.6302C13.504 6 14.1928 6.74385 14.1258 7.61505L13.6065 14.365C13.5464 15.1465 12.8948 15.75 12.1109 15.75H5.88907C5.10526 15.75 4.4536 15.1465 4.39348 14.365L3.87426 7.61505Z" stroke="currentColor" />
+       <path d="M14.625 3.75H3.375" stroke="currentColor" stroke-linecap="round" />
+       <path d="M7.5 2.25C7.5 1.83579 7.83577 1.5 8.25 1.5H9.75C10.1642 1.5 10.5 1.83579 10.5 2.25V3.75H7.5V2.25Z" stroke="currentColor" />
+       <path d="M10.5 9V12.75" stroke="currentColor" stroke-linecap="round" />
+       <path d="M7.5 9V12.75" stroke="currentColor" stroke-linecap="round" />
+   </svg>
+
+    <div class="absolute -top-7 w-20  text-customWwhite px-1 py-2 rounded-md pointer-events-none
+    text-sm font-medium transition-all duration-300  invisible opacity-0 bg-gray-600
+    group-hover:opacity-100 group-hover:visible group-hover:-top-11
+    before:content-[''] before:absolute before:h-3 before:w-3 before:-bottom-1 before:left-1/2 
+    before:transform before:-translate-x-1/2 before:rotate-45 before:bg-gray-600
+
+    ">Delete all</div>
+    </button>
+
+
+
+
+    <div id="delete-all-modal" class="opacity-0 z-50 fixed inset-0 flex items-center justify-center pointer-events-none transition-all duration-300">
+
+        <div id="delete-all-overlay" class="fixed inset-0 bg-customGray bg-opacity-70 z-40"></div>
+
+        <form action="" method="post" id="delete-all-form"
+            class="min-w-80 -mt-48  dark:border dark:border-customWwhite
+        bg-customWwhite dark:bg-customBlack  flex flex-col items-center justify-between rounded-2xl relative z-50">
+
+            <div class="h-1/2 flex flex-col items-center px-10 py-4 min-w-full  ">
+                <svg class="big-trash-svg w-16 h-16 text-customRed opacity-50 dark:group-disabled:text-gray-500
+                    transition-all duration-500" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.87426 7.61505C3.80724 6.74386 4.49607 6 5.36983 6H12.6302C13.504 6 14.1928 6.74385 14.1258 7.61505L13.6065 14.365C13.5464 15.1465 12.8948 15.75 12.1109 15.75H5.88907C5.10526 15.75 4.4536 15.1465 4.39348 14.365L3.87426 7.61505Z" stroke="currentColor" />
+                    <path d="M14.625 3.75H3.375" stroke="currentColor" stroke-linecap="round" />
+                    <path d="M7.5 2.25C7.5 1.83579 7.83577 1.5 8.25 1.5H9.75C10.1642 1.5 10.5 1.83579 10.5 2.25V3.75H7.5V2.25Z" stroke="currentColor" />
+                    <path d="M10.5 9V12.75" stroke="currentColor" stroke-linecap="round" />
+                    <path d="M7.5 9V12.75" stroke="currentColor" stroke-linecap="round" />
+                </svg>
+                <h2 class="text-xl text-center font-semibold text-customBlack dark:text-customWwhite">Delete all <span id="you-sure-filter-span"></span> notes?</h1>
+            </div>
+
+            <div class="h-1/2 w-full flex justify-between items-center py-4 flex-wrap gap-2">
+                <button type="button" id="delete-all-cancel" class="ml-4 w-28 h-9 bg-transparent text-customPurple tracking-wider border border-customPurple rounded-md font-medium hover:bg-customPurple3 transition-all">CANCEL</button>
+                <button type="submit" id="delete-all-delete" name="add-btn" class="mr-4 w-28 h-9 bg-customRed bg-opacity-70 dark:bg-opacity-50 text-customWwhite rounded-md font-medium tracking-wider  transition-all hover:bg-opacity-100">DELETE</button>
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+
+
+    <!-- Add Note Modal -->
+    <div id="add-note-modal" class="opacity-0 z-50 fixed inset-0 flex items-center justify-center pointer-events-none transition-all duration-300">
+        <!-- Overlay -->
+        <div id="modal-overlay" class="fixed inset-0 bg-customGray bg-opacity-70 z-40"></div>
+
+        <!-- Modal Content -->
+        <form action="" method="post" id="add-note-form"
+            class="w-72 sm:w-96 md:w-2/4 lg:w-1/3 min-h-72 -mt-72 dark:border dark:border-customWwhite
+        bg-customWwhite dark:bg-customBlack  flex flex-col items-center justify-between rounded-2xl relative z-50">
+
+            <div class="h-1/2 flex flex-col items-center px-10 py-4 min-w-full  ">
+                <h1 class="text-2xl font-semibold text-customBlack dark:text-customWwhite">NEW NOTE</h1>
+                <input required type="text" name="to-be-added-note" id="modal-input-field" placeholder="Enter your note..."
+                    class="text-customPurple dark:text-customWwhite  min-w-full outline-none border
+                     placeholder-phColorLht dark:placeholder-phColorDrk bg-transparent text-base font-medium
+                     px-4 py-2  tracking-widest placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-md placeholder:font-light mt-4
+                     border-customPurple focus-within:ring-1 focus-within:ring-customPurple 
+                     focus-within:shadow-sm rounded-md dark:border-customWwhite dark:focus-within:ring-customWwhite
+                     focus:ring-1 focus:ring-customPurple focus:shadow-sm" />
+            </div>
+
+            <div class="h-1/2 w-full flex justify-between items-center py-4 flex-wrap gap-2">
+                <button type="button" id="add-modal-cancel" class="ml-4 w-28 h-9 bg-transparent text-customPurple tracking-wider border border-customPurple rounded-md font-medium hover:bg-customPurple3 transition-all">CANCEL</button>
+                <button type="submit" id="add-modal-apply" name="add-btn" class="mr-4 w-28 h-9 bg-customPurple text-customWwhite rounded-md font-medium tracking-wider  transition-all hover:bg-customPurple2">ADD</button>
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+
+
+
+    <!-- Update Note Modal -->
+    <div id="update-note-modal" class="update-note-modal-class opacity-0 z-50 fixed inset-0 flex items-center justify-center pointer-events-none transition-all duration-300">
+        <!-- Overlay -->
+        <div id="modal-overlay-for-update-note" class="modal-overlay-for-update-note-class fixed inset-0 bg-customGray bg-opacity-70 z-40"></div>
+
+        <!-- Modal Content -->
+        <form action="" method="post"
+            class="w-72 sm:w-96 md:w-2/4 lg:w-1/3 min-h-72 -mt-72 dark:border dark:border-customWwhite
+        bg-customWwhite dark:bg-customBlack  flex flex-col items-center justify-between rounded-2xl relative z-50">
+            <input type="hidden" id="" class="update-modal-hidden-input top-4 z-50 rotate-180 opacity-10 text-customRed cursor-not-allowed
+            right-8 bottom-28" name="note-id-update" value="" />
+            <div class="h-1/2 flex flex-col items-center px-10 py-4 min-w-full  ">
+                <h1 class="text-2xl font-semibold text-customBlack dark:text-customWwhite">UPDATE NOTE</h1>
+                <input required type="text" name="to-be-updated-note" id="modal-input-field-update" placeholder="Update your note..."
+                    class="text-customPurple dark:text-customWwhite  min-w-full outline-none border
+        placeholder-phColorLht dark:placeholder-phColorDrk bg-transparent text-base font-medium
+        px-4 py-2  tracking-widest placeholder:text-xs md:placeholder:text-sm lg:placeholder:text-md placeholder:font-light mt-4
+        border-customPurple focus-within:ring-1 focus-within:ring-customPurple 
+        focus-within:shadow-sm rounded-md dark:border-customWwhite dark:focus-within:ring-customWwhite
+        focus:ring-1 focus:ring-customPurple focus:shadow-sm" />
+            </div>
+
+            <div class="h-1/2 w-full flex justify-between items-center py-4 flex-wrap gap-2">
+                <button type="button" id="update-modal-cancel-btn" class="update-modal-cancel-class ml-4 w-28 h-9 bg-transparent text-customPurple tracking-wider border border-customPurple rounded-md font-medium hover:bg-customPurple3 transition-all">CANCEL</button>
+                <button type="submit" id="update-modal-update-btn" name="update-btn" class="mr-4 w-28 h-9 bg-customPurple text-customWwhite rounded-md font-medium tracking-wider  transition-all hover:bg-customPurple2">UPDATE</button>
+            </div>
+
+        </form>
+
+    </div>
+
+
+
+    <script src="src/script.js" defer></script>
+</body>
+
+</html>
