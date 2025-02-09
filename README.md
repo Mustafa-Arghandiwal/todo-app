@@ -28,3 +28,7 @@ define('DB_NAME', 'todo_list_db');
 ### 5. Run the app
 - Ensure Apache and MySQL are running in XAMPP
 - Open your browser and go to <http://localhost/todo-app>
+
+### If you want to update the front-end:
+- Navigate to your project directory and run `npm install` to install Tailwind CSS (assuming you have NodeJS installed)
+- Run `npm run build-css` to build the CSS
